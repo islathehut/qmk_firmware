@@ -3,6 +3,40 @@
 
 #include "klor_keycodes.h"
 
+#if defined (MIRYOKU_CLIPBOARD_FUN)
+  #define U_RDO KC_AGIN
+  #define U_PST KC_PSTE
+  #define U_CPY KC_COPY
+  #define U_CUT KC_CUT
+  #define U_UND KC_UNDO
+  #define U_SLCTALL KC_SELECT
+  #define U_DESLCT KC_SELECT
+#elif defined (MIRYOKU_CLIPBOARD_MAC)
+  #define U_RDO SCMD(KC_Z)
+  #define U_PST LCMD(KC_V)
+  #define U_CPY LCMD(KC_C)
+  #define U_CUT LCMD(KC_X)
+  #define U_UND LCMD(KC_Z)
+  #define U_SLCTALL LCMD(KC_A)
+  #define U_DESLCT LCMD(KC_U)
+#elif defined (MIRYOKU_CLIPBOARD_WIN)
+  #define U_RDO C(KC_Y)
+  #define U_PST C(KC_V)
+  #define U_CPY C(KC_C)
+  #define U_CUT C(KC_X)
+  #define U_UND C(KC_Z)
+  #define U_SLCTALL C(KC_A)
+  #define U_DESLCT C(KC_U)
+#else
+  #define U_RDO KC_AGIN
+  #define U_PST S(KC_INS)
+  #define U_CPY C(KC_INS)
+  #define U_CUT S(KC_DEL)
+  #define U_UND KC_UNDO
+  #define U_SLCTALL C(KC_A)
+  #define U_DESLCT C(KC_U)
+#endif
+
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ K E Y M A P S  P O L Y D A C T Y L                                                                                                         │
 // └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -45,22 +79,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    │ n a v                                                     │
    └───────────────────────────────────────────────────────────┘
              ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
-             │         │         │         │         │         │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │ RGB TOG │ RGB MOD │   VOL+  │ RGB HUE │ RGB SAT │
+             │         │         │         │         │         │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │ INSERT  │  HOME   │    ↑    │   END   │ PAGE UP │
    ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤ │╰╯╰╯╰╯╰╯╰╯╰╯╰╯╰╯│ ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-   │         │ CMD/WIN │   ALT   │   CTRL  │  SHIFT  │         ├─╯                ╰─┤         │  PREV   │   VOL-  │   NEXT  │ RGB VAL │         │
+   │         │ CMD/WIN │   ALT   │   CTRL  │  SHIFT  │         ├─╯                ╰─┤CAPS LOCK│    ←    │    ↓    │    →    │ PAGE DN │SLCT ALL │
    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-   │         │         │         │         │         │         ││  MUTE  ││PLY/PSE ││         │         │         │         │         │         │
+   │         │         │         │         │         │         ││  MUTE  ││PLY/PSE ││  REDO   │  PASTE  │   COPY  │   CUT   │  UNDO   │DESELECT │
    └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
-                                 │         │         │         │         ││         │  STOP   │ PLY/PSE │   MUTE  │
+                                 │         │         │         │         ││         │  ENTER  │  BSPACE │   DEL   │
                                  └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘ */
 
-                                 [_MEDIA] = LAYOUT_miryoku(
-                                    //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                                                 _______,   _______,  _______,  _______,  _______,                       RGB_TOG,  RGB_MOD,  KC_VOLU,  RGB_HUI,  RGB_SAI,
-                                       _______,  KC_LGUI,   KC_LALT,  KC_LCTL,  KC_LSFT,  _______,                       _______,  KC_MPRV,  KC_VOLD,  KC_MNXT,  RGB_VAI,  _______,
-                                       _______,  _______,   _______,  _______,  _______,  _______,  KC_MUTE,   KC_MPLY,  _______,  _______,  _______,  _______,  _______,  _______,
-                                                                     _______,  _______,  _______,  _______,   _______,   KC_MSTP,  KC_MPLY,  KC_MUTE
-                                      ),
+    [_NAV] = LAYOUT_miryoku(
+    //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
+                    _______,   _______,  _______,  _______,  _______,                    KC_INS,   KC_HOME,  KC_UP,    KC_END,   KC_PGUP,
+        _______,  KC_LGUI,   KC_LALT,  KC_LCTL,  KC_LSFT,  _______,                      CW_TOGG,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_PGDN,  U_SLCTALL,
+        _______,  _______,   _______,  _______,  _______,  _______,  KC_MUTE,  KC_MPLY,  U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,    U_DESLCT,
+                                   _______,  _______,  _______,  _______,         _______,  KC_ENT,   KC_BSPC,    KC_DEL
+        ),
 
  /*
    ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
