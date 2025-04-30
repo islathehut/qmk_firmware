@@ -11,7 +11,7 @@ for more options.
 // #define MASTER_RIGHT
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 100
+#define TAPPING_TERM 170
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define QUICK_TAP_TERM 0

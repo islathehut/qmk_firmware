@@ -152,13 +152,13 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
                 strcpy ( layer_state_str, "BASE QWERTY");
                 break;
             case 2:
-                strcpy ( layer_state_str, "LOWER");
+                strcpy ( layer_state_str, "NAV");
                 break;
             case 3:
-                strcpy ( layer_state_str, "RAISE");
+                strcpy ( layer_state_str, "MEDIA");
                 break;
             case 4:
-                strcpy ( layer_state_str, "ADJUST");
+                strcpy ( layer_state_str, "MOUSE");
                 break;
             default:
                 strcpy ( layer_state_str, "XXXXXX");
@@ -167,7 +167,7 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
           strcpy ( o_text, layer_state_str );
     }
   //return state;
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _NAV, _MEDIA, _MOUSE);
 }
 
 
@@ -255,72 +255,34 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 // ▝▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
+//     switch (keycode) {
 
-        case OS_SWAP:
-            if (record->event.pressed) {
-                if (!keymap_config.swap_lctl_lgui) {
-                  keymap_config.swap_lctl_lgui = true;  // ─── MAC
-                }
-                else {
-                  keymap_config.swap_lctl_lgui = false; // ─── WIN
-                }
-            eeconfig_update_keymap(keymap_config.raw);
-            clear_keyboard();  // ──── clear to prevent stuck keys
-            return false;
-          }
+// // ┌───────────────────────────────────────────────────────────┐
+// // │ l a y e r                                                 │
+// // └───────────────────────────────────────────────────────────┘
 
-
-// ┌───────────────────────────────────────────────────────────┐
-// │ l a y e r                                                 │
-// └───────────────────────────────────────────────────────────┘
-
-        case QWERTY:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_QWERTY);
-            }
-            return false;
-        case LOWER:
-            if (record->event.pressed) {
-                layer_on(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-        case RAISE:
-            if (record->event.pressed) {
-                layer_on(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-        case ADJUST:
-            if (record->event.pressed) {
-                layer_on(_ADJUST);
-            } else {
-                layer_off(_ADJUST);
-            }
-            return false;
-
-// ┌───────────────────────────────────────────────────────────┐
-// │ q m k                                                     │
-// └───────────────────────────────────────────────────────────┘
-
-        case MAKE_H:
-          if (record->event.pressed) {
-            #ifdef KEYBOARD_klor_kb2040
-              SEND_STRING ("qmk compile -kb klor/2040 -km default");
-            #else
-              SEND_STRING ("qmk compile -kb klor -km default");
-            #endif
-            tap_code(KC_ENTER);
-          }
-          break;
-    }
+//         case U_NAV:
+//             if (record->event.pressed) {
+//                 layer_on(_NAV);
+//             } else {
+//                 layer_off(_NAV);
+//             }
+//             return false;
+//         case U_MEDIA:
+//             if (record->event.pressed) {
+//                 layer_on(_MEDIA);
+//             } else {
+//                 layer_off(_MEDIA);
+//             }
+//             return false;
+//         case U_MOUSE:
+//             if (record->event.pressed) {
+//                 layer_on(_MOUSE);
+//             } else {
+//                 layer_off(_MOUSE);
+//             }
+//             return false;
+//     }
     return true;
 }
 
@@ -337,32 +299,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // └───────────────────────────────────────────────────────────┘
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
+    if (clockwise) {
+        tap_code(KC_VOLU);
+    } else {
+        tap_code(KC_VOLD);
+    }
 
 // ┌───────────────────────────────────────────────────────────┐
 // │ e n c o d e r  R                                          │
 // └───────────────────────────────────────────────────────────┘
 
-    } else if (index == 1) {
-      if(IS_LAYER_ON(_LOWER)){
-          if (clockwise) {
-              tap_code(KC_MNXT);
-          } else {
-              tap_code(KC_MPRV);
-          }
-      }else {
-            if (clockwise) {
-              tap_code(KC_VOLU);
-          } else {
-              tap_code(KC_VOLD);
-          }
-      }
-    }
     return true;
 }
 

@@ -3,40 +3,6 @@
 
 #include "klor_keycodes.h"
 
-#if defined (MIRYOKU_CLIPBOARD_FUN)
-  #define U_RDO KC_AGIN
-  #define U_PST KC_PSTE
-  #define U_CPY KC_COPY
-  #define U_CUT KC_CUT
-  #define U_UND KC_UNDO
-  #define U_SLCTALL KC_SELECT
-  #define U_DESLCT KC_SELECT
-#elif defined (MIRYOKU_CLIPBOARD_MAC)
-  #define U_RDO SCMD(KC_Z)
-  #define U_PST LCMD(KC_V)
-  #define U_CPY LCMD(KC_C)
-  #define U_CUT LCMD(KC_X)
-  #define U_UND LCMD(KC_Z)
-  #define U_SLCTALL LCMD(KC_A)
-  #define U_DESLCT LCMD(KC_U)
-#elif defined (MIRYOKU_CLIPBOARD_WIN)
-  #define U_RDO C(KC_Y)
-  #define U_PST C(KC_V)
-  #define U_CPY C(KC_C)
-  #define U_CUT C(KC_X)
-  #define U_UND C(KC_Z)
-  #define U_SLCTALL C(KC_A)
-  #define U_DESLCT C(KC_U)
-#else
-  #define U_RDO KC_AGIN
-  #define U_PST S(KC_INS)
-  #define U_CPY C(KC_INS)
-  #define U_CUT S(KC_DEL)
-  #define U_UND KC_UNDO
-  #define U_SLCTALL C(KC_A)
-  #define U_DESLCT C(KC_U)
-#endif
-
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ K E Y M A P S  P O L Y D A C T Y L                                                                                                         │
 // └────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
@@ -63,9 +29,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [_QWERTY] = LAYOUT_miryoku(
  //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
               KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                          KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,
-    KC_LSFT,   KC_A,     KC_S,     KC_D,     KC_F,     KC_G,                          KC_H,     KC_J,     KC_K,     KC_L,     KC_DQT,  KC_RSFT,
-    KC_LGUI,   KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_MUTE,   KC_MPLY,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_LGUI,
-                                  KC_ESC,  KC_SPC,    KC_TAB,   KC_MPRV,   KC_MNXT,  KC_ENT,   KC_BSPC,    KC_DEL
+    KC_LSFT,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,                          KC_H,     KC_J,     KC_K,     KC_L,     KC_DQT,   KC_RSFT,
+    KC_LGUI,   KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_MUTE,   KC_MPLY, KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_LGUI,
+     LT(_MEDIA,KC_ESC),LT(_NAV,KC_SPC),  LT(_MOUSE,KC_TAB),   KC_MPRV,   KC_MNXT,  LT(U_SYM,KC_ENT),  LT(U_NUM,KC_BSPC), LT(U_FUN,KC_DEL)
  ),
 
  /*
@@ -90,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_miryoku(
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                    _______,   _______,  _______,  _______,  _______,                    KC_INS,   KC_HOME,  KC_UP,    KC_END,   KC_PGUP,
+                 _______,   _______,  _______,  _______,  _______,                       KC_INS,   KC_HOME,  KC_UP,    KC_END,   KC_PGUP,
         _______,  KC_LGUI,   KC_LALT,  KC_LCTL,  KC_LSFT,  _______,                      CW_TOGG,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_PGDN,  U_SLCTALL,
         _______,  _______,   _______,  _______,  _______,  _______,  KC_MUTE,  KC_MPLY,  U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,    U_DESLCT,
                                    _______,  _______,  _______,  _______,         _______,  KC_ENT,   KC_BSPC,    KC_DEL
@@ -138,58 +104,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOUSE] = LAYOUT_miryoku(
     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                    _______,   _______,  _______,  _______,  _______,                    _______,  KC_WH_L,  KC_MS_U,  KC_WH_R,  KC_WH_U,
-        _______,  KC_LGUI,   KC_LALT,  KC_LCTL,  KC_LSFT,  _______,                      _______,  KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_WH_D,  U_SLCTALL,
-        _______,  _______,   _______,  _______,  _______,  _______,  KC_MUTE,  KC_MPLY,  U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,    U_DESLCT,
-                                    _______,  _______,  _______,  _______,         _______,  KC_BTN2,  KC_BTN1,  KC_BTN3,
-        ),
-
- /*
-   ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
-
-   ┌───────────────────────────────────────────────────────────┐
-   │ r a i s e                                                 │
-   └───────────────────────────────────────────────────────────┘
-             ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
-             │    !    │    @    │    #    │    $    │    %    │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │    ^    │    &    │         │    °    │    /    │
-   ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤ │╰╯╰╯╰╯╰╯╰╯╰╯╰╯╰╯│ ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-   │         │         │         │         │         │         ├─╯                ╰─┤         │         │         │         │         │         │
-   ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-   │         │         │         │         │         │         ││  MUTE  ││PLY/PSE ││         │         │         │         │         │         │
-   └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
-                                 │         │ ADJUST  │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
-                                 └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘ */
-
-   [_RAISE] = LAYOUT_miryoku(
- //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-              KC_EXLM,  KC_AT,    KC_HASH,  KC_DLR,   KC_PERC,                       KC_CIRC,  KC_AMPR,  RALT(KC_U),RALT(KC_3),KC_BSLS,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MUTE,   KC_MPLY,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-                                  _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______
- ),
- /*
-   ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
-
-   ┌───────────────────────────────────────────────────────────┐
-   │ a d j u s t                                               │
-   └───────────────────────────────────────────────────────────┘
-             ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
-             │ AUDIO   │ HAPTIC  │ RGB HUE │ RGB MOD │         │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │         │   F7    │   F8    │   F9    │   F14   │
-   ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤ │╰╯╰╯╰╯╰╯╰╯╰╯╰╯╰╯│ ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
-   │  RESET  │ DEBUG   │ QWERTY  │ RGB SAT │         │         ├─╯                ╰─┤         │   F4    │   F5    │   F6    │   F12   │   F13   │
-   ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-   │  MAKE   │ OS SWAP │ COLEMAK │ RGB VAL │         │         ││  MUTE  ││PLY/PSE ││         │   F1    │   F2    │   F3    │   F10   │   F11   │
-   └─────────┴─────────┴─────────┼─────────┼─────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
-                                 │    ▼    │    ▼    │    ▼    │    ▼    ││    ▼    │    ▼    │    ▼    │    ▼    │
-                                 └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘ */
-
-   [_ADJUST] = LAYOUT_miryoku(
- //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-              AU_TOGG,  HF_TOGG,  RGB_HUI,  RGB_MOD,  XXXXXXX,                       XXXXXXX,  KC_F7,    KC_F8,    KC_F9,    KC_F14,
-    QK_BOOT,  DB_TOGG,  QWERTY,   RGB_SAI,  XXXXXXX,  XXXXXXX,                       XXXXXXX,  KC_F4,    KC_F5,    KC_F6,    KC_F12,   KC_F13,
-    MAKE_H,   OS_SWAP,  QWERTY,  RGB_VAI,  XXXXXXX,  XXXXXXX,  KC_MUTE,   KC_MPLY,  XXXXXXX,  KC_F1,    KC_F2,    KC_F3,    KC_F10,   KC_F11,
-                                  _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______
- )
+                 _______,   _______,  _______,  _______,  _______,                      _______,  KC_WH_L,  KC_MS_U,  KC_WH_R,  KC_WH_U,
+       _______,  KC_LGUI,   KC_LALT,  KC_LCTL,  KC_LSFT,  _______,                      _______,  KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_WH_D,  U_SLCTALL,
+       _______,  _______,   _______,  _______,  _______,  _______, KC_MUTE,   KC_MPLY,  U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,    U_DESLCT,
+                                    _______,  _______,  _______,  _______,         _______,  KC_BTN2,  KC_BTN1,  KC_BTN3
+        )
 
  /*
    ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸

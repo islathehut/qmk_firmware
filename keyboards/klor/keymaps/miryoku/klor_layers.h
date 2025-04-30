@@ -8,9 +8,9 @@
 typedef enum {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
+    _NAV,
+    _MEDIA,
+    _MOUSE,
 } klor_layers;
 
 #endif
