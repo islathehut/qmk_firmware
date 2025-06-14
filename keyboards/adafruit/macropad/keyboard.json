@@ -13,16 +13,10 @@
         "mousekey": false,
         "extrakey": true,
         "nkro": true,
-        "audio": true,
+        "audio": false,
         "encoder": true,
         "rgb_matrix": true,
         "oled": true
-    },
-    "audio": {
-        "driver": "pwm_hardware",
-        "power_control": {
-            "pin": "GP14"
-        }
     },
     "encoder": {
         "rotary": [

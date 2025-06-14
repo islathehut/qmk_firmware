@@ -1,5 +1,5 @@
-/*
- * Copyright 2020 Richard Titmuss <richard.titmuss@gmail.com>
+/* Copyright 2022
+ * GEIST @geigeigeist
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,14 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
-
+//#pragma once
 #include "quantum.h"
 
-void torn_set_led(uint8_t led, bool on);
-
-void secondary_encoder_read(void);
-void secondary_encoder_init(void);
+/* This a shortcut to help you visually see your layout.
+ *
+ * The first section contains all of the arguments representing the physical
+ * layout of the board and position of the keys.
+ *
+ * The second converts the arguments into a two-dimensional array which
+ * represents the switch matrix.
+ */
 
 // readability
 #define ___ KC_NO
