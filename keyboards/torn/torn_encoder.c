@@ -41,18 +41,11 @@ const uint16_t encoder_default[2][2] =  { { KC_PGDN, KC_PGUP }, { KC_VOLD, KC_VO
 bool encoder_update_kb(uint8_t index, bool clockwise) {
     // if (!encoder_update_user(index, clockwise)) return false;
 
-    uint16_t code;
-
-    if (encoder_keymaps) {
-      uint8_t layer = get_highest_layer(layer_state);
-      do {
-          code = pgm_read_word(&encoder_keymaps[layer--][index][clockwise]);
-      } while (code == KC_TRNS);
+    if (clockwise) {
+        tap_code16(KC_VOLU);
     } else {
-      code = encoder_default[index][clockwise];
+        tap_code16(KC_VOLD);
     }
-
-    tap_code16(code);
     return true;
 }
 

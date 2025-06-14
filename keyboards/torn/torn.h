@@ -23,3 +23,6 @@ void torn_set_led(uint8_t led, bool on);
 
 void secondary_encoder_read(void);
 void secondary_encoder_init(void);
+
+// readability
+#define ___ KC_NO

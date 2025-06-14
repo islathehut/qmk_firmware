@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // │ e n c o d e r s                                 │
 // └─────────────────────────────────────────────────┘
 
-#define ENCODER_RESOLUTION 2
+#define ENCODER_RESOLUTION 1
 
 
 // ┌─────────────────────────────────────────────────┐
