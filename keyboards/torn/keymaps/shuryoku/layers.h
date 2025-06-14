@@ -1,5 +1,5 @@
-#ifndef KLOR_LAYERS_H
-#define KLOR_LAYERS_H
+#ifndef LAYERS_H
+#define LAYERS_H
 
 // ┌───────────────────────────────────────────────────────────┐
 // │ d e f i n e   l a y e r s                                 │
@@ -13,7 +13,8 @@ typedef enum {
     _MOUSE,
     _NUM,
     _SYM,
-    _FUN
-} klor_layers;
+    _FUN,
+    _GAMING
+} layers;
 
 #endif

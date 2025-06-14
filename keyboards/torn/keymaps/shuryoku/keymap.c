@@ -16,10 +16,9 @@
                                         D E F A U L T
 
 */
-#include "klor_layers.h"
+#include "layers.h"
 #include <stdio.h>
 #include <string.h>
-
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ D E F I N I T I O N S                                                                                                                      │
@@ -52,11 +51,12 @@
 
 
 // Import the keymap that you use from the layouts folder
-#include "layouts/miryoku/keymap_miryoku.h"
+#include "layouts/shuryoku/keymap_shuryoku.h"
 
 char layer_state_str[24];
 char o_text[24] = "";
 int dmacro_num = 0;
+bool win = false;
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ O L E D                                                                                                                                    │
@@ -83,5 +83,48 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 // ▝▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▘
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case U_CHG_OS:
+            if (record->event.pressed) {
+                win = !win;
+                return false;
+            }
+        case U_CPY:
+            if (record->event.pressed) {
+                win ? SEND_STRING(SS_LCTL("c")) : SEND_STRING(SS_LCMD("c"));
+                return false;
+            }
+        case U_PST:
+            if (record->event.pressed) {
+                win ? SEND_STRING(SS_LCTL("v")) : SEND_STRING(SS_LCMD("v"));
+                return false;
+            }
+        case U_CUT:
+            if (record->event.pressed) {
+                win ? SEND_STRING(SS_LCTL("x")) : SEND_STRING(SS_LCMD("x"));
+                return false;
+            }
+        case U_UND:
+            if (record->event.pressed) {
+                win ? SEND_STRING(SS_LCTL("z")) : SEND_STRING(SS_LCMD("z"));
+                return false;
+            }
+        case U_RDO:
+            if (record->event.pressed) {
+                win ? SEND_STRING(SS_LCTL("y")) : SEND_STRING(SS_LCMD(SS_LSFT("z")));
+                return false;
+            }
+        case U_SLCTALL:
+            if (record->event.pressed) {
+                win ? SEND_STRING(SS_LCTL("a")) : SEND_STRING(SS_LCMD("a"));
+                return false;
+            }
+        case U_DESLCT:
+            if (record->event.pressed) {
+                win ? SEND_STRING(SS_LCTL("u")) : SEND_STRING(SS_LCMD("u"));
+                return false;
+            }
+    }
+
     return true;
 }

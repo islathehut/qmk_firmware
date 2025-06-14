@@ -1,7 +1,5 @@
 #pragma once
 
-#include "custom_config.h"
-
 /* The way how "handedness" is decided (which half is which),
 see https://docs.qmk.fm/#/feature_split_keyboard?id=setting-handedness
 for more options.
@@ -11,7 +9,7 @@ for more options.
 // #define MASTER_RIGHT
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 170
+#define TAPPING_TERM 180
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 #define QUICK_TAP_TERM 0
