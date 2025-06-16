@@ -6,7 +6,6 @@
 // └───────────────────────────────────────────────────────────┘
 
 typedef enum {
-    /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
     _NAV,
     _MEDIA,
