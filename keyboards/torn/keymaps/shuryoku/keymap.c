@@ -119,7 +119,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // use correct deselect shortcut
         case U_DESLCT:
             if (record->event.pressed) {
-                win ? SEND_STRING(SS_LCTL("u")) : SEND_STRING(SS_LCMD("u"));
+                win ? SEND_STRING(SS_LCTL(SS_LSFT("z"))) : SEND_STRING(SS_LCMD("u"));
                 return false;
             }
     }
