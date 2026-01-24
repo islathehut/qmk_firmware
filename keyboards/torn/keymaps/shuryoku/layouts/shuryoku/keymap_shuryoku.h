@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //╷             ╷             ╷             ╷                  ╷                ╷                   ╷╷╷             ╷                 ╷                 ╷                ╷             ╷             ╷             ╷
    _______,      _______,      _______,      _______,           _______,         _______,                            KC_INS,           KC_HOME,          KC_UP,           KC_END,       KC_PGUP,      U_CHG_OS,
    _______,      KC_LGUI,      KC_LALT,      KC_LCTL,           KC_LSFT,         _______,                            CW_TOGG,          KC_LEFT,          KC_DOWN,         KC_RGHT,      KC_PGDN,      U_SLCTALL,
-   _______,      _______,      _______,      _______,           _______,         _______,                            U_RDO,            U_PST,            U_CPY,           U_CUT,        U_UND,        U_DESLCT,
+   _______,      _______,      _______,      _______,           _______,         _______,                            U_RDO,            U_PST,            U_CPY,           U_CUT,        U_UND,        U_SAVE,
                                _______,      _______,           _______,         _______,                            KC_ENT,           KC_BSPC,          KC_DEL,          KC_MUTE
 ),
 
@@ -154,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //╷             ╷             ╷             ╷                  ╷                ╷                   ╷╷╷             ╷                 ╷                 ╷                ╷             ╷             ╷             ╷
    _______,      _______,      _______,      _______,           _______,         _______,                            _______,          KC_WH_L,          KC_MS_U,         KC_WH_R,      KC_WH_U,      _______,
    _______,      KC_LGUI,      KC_LALT,      KC_LCTL,           KC_LSFT,         _______,                            _______,          KC_MS_L,          KC_MS_D,         KC_MS_R,      KC_WH_D,      U_SLCTALL,
-   _______,      _______,      _______,      _______,           _______,         _______,                            U_RDO,            U_PST,            U_CPY,           U_CUT,        U_UND,        U_DESLCT,
+   _______,      _______,      _______,      _______,           _______,         _______,                            U_RDO,            U_PST,            U_CPY,           U_CUT,        U_UND,        U_SAVE,
                                _______,      _______,           _______,         _______,                            KC_BTN1,          KC_BTN2,          KC_BTN3,         KC_MUTE
 ),
 
