@@ -13,7 +13,8 @@ typedef enum {
     _NUM,
     _SYM,
     _FUN,
-    _GAMING
+    _GAMING,
+    _GAMING_NUM
 } layers;
 
 #endif

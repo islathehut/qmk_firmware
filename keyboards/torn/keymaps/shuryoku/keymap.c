@@ -56,14 +56,15 @@ bool win = false; // when true shortcuts like copy/paste follow the windows spec
 
 // configure tapping term based on keys pressed
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case SHT_T:
-            return TAPPING_TERM - 70;
-        case SHT_N:
-            return TAPPING_TERM - 70;
-        default:
-            return TAPPING_TERM;
-    }
+    // switch (keycode) {
+    //     case SHT_T:
+    //         return TAPPING_TERM - 70;
+    //     case SHT_N:
+    //         return TAPPING_TERM - 70;
+    //     default:
+    //         return TAPPING_TERM;
+    // }
+    return TAPPING_TERM;
 }
 
 
@@ -78,6 +79,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case U_CHG_OS:
             if (record->event.pressed) {
                 win = !win;
+                return false;
+            }
+        // send option+p
+        case U_OPT_P:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LOPT("p"));
+                return false;
+            }
+        // send option+p
+        case U_OPT_R:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LOPT("r"));
                 return false;
             }
         // use correct copy shortcut
