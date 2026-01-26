@@ -14,6 +14,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum.h"
 #include "print.h"
 
+// readability
+#define ___ KC_NO
+#define _______ KC_NO
+
 #ifdef RGB_MATRIX_ENABLE
 led_config_t g_led_config = { {
 // Key Matrix to LED Index
@@ -201,17 +205,17 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
     display = qp_st7789_make_spi_device(320, 240, LCD_CS_PIN, LCD_DC_PIN, LCD_RST_PIN, LCD_SPI_DIVISOR, 3);
     if (is_keyboard_left()) {
         qp_power(display, true);
-        } 
+        }
     if (is_keyboard_left()) {
         qp_init(display, QP_ROTATION_180);
-        } 
+        }
 // If using pointing device on right side, comment out following 3 lines
         // else {
         // qp_init(display, QP_ROTATION_0);
         // }
     if (is_keyboard_left()) {
         image = qp_load_image_mem(gfx_ZodiarkPiLogoSTpink);
-    } 
+    }
 // If using pointing device on right side, comment out following 3 lines
     // else {
     //     image = qp_load_image_mem(gfx_ZodiarkPiLogoSTpink);
@@ -223,7 +227,7 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
     // qp_power(display, true);
     // if (is_keyboard_left()) {
     //     qp_init(display, QP_ROTATION_0);
-    //     } 
+    //     }
     // If using pointing device on right side, comment out following 3 lines
     //     else {
     //     qp_init(display, QP_ROTATION_0);
@@ -231,7 +235,7 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
 
     //     if (is_keyboard_left()) {
     //     image = qp_load_image_mem(gfx_ZodiarkPiLogoGC);
-    //      } 
+    //      }
     // If using pointing device on right side, comment out following 3 lines
     //     else {
     //     image = qp_load_image_mem(gfx_ZodiarkPiLogoGC);
@@ -242,7 +246,7 @@ uint32_t deferred_init(uint32_t trigger_time, void *cb_arg) {
         print("image was not null\n");
         if (is_keyboard_left()) {
             qp_drawimage(display, 0, 0, image);
-        } 
+        }
     // If using pointing device on right side, comment out following 3 lines
         // else {
         //     qp_drawimage(display, 0, 0, image);

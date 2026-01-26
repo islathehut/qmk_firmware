@@ -11,7 +11,6 @@
 #include "layers.h"
 #include <stdio.h>
 #include <string.h>
-#include QMK_KEYBOARD_H
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 // │ D E F I N I T I O N S                                                                                                                      │
@@ -45,9 +44,6 @@
 // This is the shuryoku keymap definition
 #include "layouts/shuryoku/keymap_shuryoku.h"
 
-char layer_state_str[24];
-char o_text[24] = "";
-int dmacro_num = 0;
 bool linux = false; // when true shortcuts like copy/paste follow the linux spec, otherwise they follow the mac spec
 
 
