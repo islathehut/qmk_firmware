@@ -15,7 +15,8 @@ typedef enum {
     U_CPY,
     U_UND,
     U_SLCTALL,
-    U_SAVE
+    U_SAVE,
+    U_GAMING_TOG,
 } custom_keycodes;
 
 #endif

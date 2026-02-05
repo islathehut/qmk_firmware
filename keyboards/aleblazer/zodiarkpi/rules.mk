@@ -6,3 +6,4 @@ RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = ws2812
 WS2812_DRIVER = vendor
 VIA_ENABLE = yes
+SRC += fonts/notosans32.qff.c
